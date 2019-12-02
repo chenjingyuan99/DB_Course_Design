@@ -1,0 +1,21 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+
+    <class name="entity.Awarding" table="awarding" schema="dbo" catalog="douban_db">
+        <id name="awardsId">
+            <column name="awards_id" sql-type="int"/>
+        </id>
+        <property name="awardsName">
+            <column name="awards_name" sql-type="varchar(32)" length="32"/>
+        </property>
+        <property name="activities">
+            <column name="activities" sql-type="varchar(32)" length="32" not-null="true"/>
+        </property>
+        <property name="awardObject">
+            <column name="award_object" sql-type="varchar(32)" length="32" not-null="true"/>
+        </property>
+    </class>
+</hibernate-mapping>

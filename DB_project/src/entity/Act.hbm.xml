@@ -1,0 +1,21 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+
+    <class name="entity.Act" table="act" schema="dbo" catalog="douban_db">
+        <id name="relationId">
+            <column name="relation_id" sql-type="int"/>
+        </id>
+        <property name="actorId">
+            <column name="actor_id" sql-type="int"/>
+        </property>
+        <property name="movieId">
+            <column name="movie_id" sql-type="int"/>
+        </property>
+        <property name="roleName">
+            <column name="role_name" sql-type="varchar(32)" length="32"/>
+        </property>
+    </class>
+</hibernate-mapping>

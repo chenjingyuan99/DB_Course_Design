@@ -1,0 +1,15 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+
+    <class name="entity.Director" table="director" schema="dbo" catalog="douban_db">
+        <id name="directorId">
+            <column name="director_id" sql-type="int"/>
+        </id>
+        <property name="directorName">
+            <column name="director_name" sql-type="varchar(32)" length="32"/>
+        </property>
+    </class>
+</hibernate-mapping>

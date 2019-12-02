@@ -1,0 +1,21 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+
+    <class name="entity.Browsing" table="browsing" schema="dbo" catalog="douban_db">
+        <id name="browseId">
+            <column name="browse _id" sql-type="int"/>
+        </id>
+        <property name="browseContent">
+            <column name="browse _content" sql-type="varchar(100)" length="100"/>
+        </property>
+        <property name="browser">
+            <column name="browser" sql-type="varchar(32)" length="32"/>
+        </property>
+        <property name="browseTime">
+            <column name="browse_time" sql-type="varchar(10)" length="10" not-null="true"/>
+        </property>
+    </class>
+</hibernate-mapping>

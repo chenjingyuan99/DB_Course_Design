@@ -1,0 +1,33 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+
+    <class name="entity.Comment" table="comment" schema="dbo" catalog="douban_db">
+        <id name="relationId">
+            <column name="relation_id" sql-type="int"/>
+        </id>
+        <property name="comId">
+            <column name="com_id" sql-type="int"/>
+        </property>
+        <property name="movId">
+            <column name="mov_id" sql-type="int"/>
+        </property>
+        <property name="usrId">
+            <column name="usr_id" sql-type="int"/>
+        </property>
+        <property name="comSeen">
+            <column name="com_seen" sql-type="tinyint"/>
+        </property>
+        <property name="comStar">
+            <column name="com_star" sql-type="tinyint" not-null="true"/>
+        </property>
+        <property name="comContent">
+            <column name="com_content" sql-type="varchar(16)" length="16" not-null="true"/>
+        </property>
+        <property name="comTime">
+            <column name="com_time" sql-type="timestamp" not-null="true"/>
+        </property>
+    </class>
+</hibernate-mapping>
