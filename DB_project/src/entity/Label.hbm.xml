@@ -1,0 +1,18 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+
+    <class name="entity.Label" table="label" schema="dbo" catalog="douban_db">
+        <id name="labId">
+            <column name="lab_id" sql-type="int"/>
+        </id>
+        <property name="comId">
+            <column name="com_id" sql-type="int" not-null="true"/>
+        </property>
+        <property name="labComment">
+            <column name="lab_comment" sql-type="varchar(16)" length="16" not-null="true"/>
+        </property>
+    </class>
+</hibernate-mapping>

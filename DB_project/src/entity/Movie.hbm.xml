@@ -1,0 +1,24 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+
+    <class name="entity.Movie" table="movie" schema="dbo" catalog="douban_db">
+        <id name="movieId">
+            <column name="movie_id" sql-type="int"/>
+        </id>
+        <property name="movieName">
+            <column name="movie_name" sql-type="varchar(32)" length="32"/>
+        </property>
+        <property name="releaseDate">
+            <column name="release_date" sql-type="date"/>
+        </property>
+        <property name="movieTime">
+            <column name="movie_time" sql-type="int"/>
+        </property>
+        <property name="movieIntroduction">
+            <column name="movie_introduction" sql-type="varchar(400)" length="400"/>
+        </property>
+    </class>
+</hibernate-mapping>

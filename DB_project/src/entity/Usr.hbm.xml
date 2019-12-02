@@ -1,0 +1,21 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+
+    <class name="entity.Usr" table="usr" schema="dbo" catalog="douban_db">
+        <id name="usrId">
+            <column name="usr_id" sql-type="int"/>
+        </id>
+        <property name="usrAccount">
+            <column name="usr_account" sql-type="varchar(16)" length="16"/>
+        </property>
+        <property name="usrNickname">
+            <column name="usr_nickname" sql-type="varchar(16)" length="16"/>
+        </property>
+        <property name="usrPasswd">
+            <column name="usr_passwd" sql-type="varchar(16)" length="16"/>
+        </property>
+    </class>
+</hibernate-mapping>
