@@ -1,0 +1,64 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-configuration PUBLIC
+        "-//Hibernate/Hibernate Configuration DTD//EN"
+        "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+    <session-factory>
+        <property name="connection.url">jdbc:sqlserver://localhost;database=douban_db</property>
+        <property name="connection.driver_class">com.microsoft.sqlserver.jdbc.SQLServerDriver</property>
+        <property name="hibernate.dialect">org.hibernate.dialect.SQLServer2008Dialect</property>
+        <property name="hibernate.show_sql">true</property>
+        <property name="hibernate.format_sql">true</property>
+        <property name="hibernate.hbm2ddl.auto">update</property>
+        <property name="connection.characterEncoding">UTF-8</property>
+        <mapping class="entity.Act"/>
+        <mapping resource="entity/Act.hbm.xml"/>
+        <mapping class="entity.Actor"/>
+        <mapping resource="entity/Actor.hbm.xml"/>
+        <mapping resource="entity/Awarding.hbm.xml"/>
+        <mapping class="entity.Awarding"/>
+        <mapping class="entity.Awards"/>
+        <mapping resource="entity/Awards.hbm.xml"/>
+        <mapping resource="entity/Classify.hbm.xml"/>
+        <mapping class="entity.Classify"/>
+        <mapping resource="entity/Comment.hbm.xml"/>
+        <mapping class="entity.Comment"/>
+        <mapping class="entity.Direct"/>
+        <mapping resource="entity/Direct.hbm.xml"/>
+        <mapping resource="entity/Director.hbm.xml"/>
+        <mapping class="entity.Director"/>
+        <mapping class="entity.Discuss"/>
+        <mapping resource="entity/Discuss.hbm.xml"/>
+        <mapping class="entity.Discussion"/>
+        <mapping resource="entity/Discussion.hbm.xml"/>
+        <mapping class="entity.Label"/>
+        <mapping resource="entity/Label.hbm.xml"/>
+        <mapping class="entity.Language"/>
+        <mapping resource="entity/Language.hbm.xml"/>
+        <mapping class="entity.Location"/>
+        <mapping resource="entity/Location.hbm.xml"/>
+        <mapping class="entity.Movie"/>
+        <mapping resource="entity/Movie.hbm.xml"/>
+        <mapping class="entity.MovieLanguage"/>
+        <mapping resource="entity/MovieLanguage.hbm.xml"/>
+        <mapping class="entity.Region"/>
+        <mapping resource="entity/Region.hbm.xml"/>
+        <mapping class="entity.Responding"/>
+        <mapping resource="entity/Responding.hbm.xml"/>
+        <mapping class="entity.Script"/>
+        <mapping resource="entity/Script.hbm.xml"/>
+        <mapping class="entity.Scriptwriter"/>
+        <mapping resource="entity/Scriptwriter.hbm.xml"/>
+        <mapping class="entity.Type"/>
+        <mapping resource="entity/Type.hbm.xml"/>
+        <mapping resource="entity/Usr.hbm.xml"/>
+        <mapping class="entity.Usr"/>
+
+
+        <!-- <property name="connection.username"/> -->
+        <!-- <property name="connection.password"/> -->
+
+        <!-- DB schema will be updated if needed -->
+        <!-- <property name="hibernate.hbm2ddl.auto">update</property> -->
+    </session-factory>
+</hibernate-configuration>
