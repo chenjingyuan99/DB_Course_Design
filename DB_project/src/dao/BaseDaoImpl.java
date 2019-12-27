@@ -6,32 +6,32 @@ import org.hibernate.cfg.Configuration;
 
 public class BaseDaoImpl implements BaseDao{
 	
-	public static Session getSession() {
-		Configuration cfg = new Configuration().configure();		
-		//ServiceRegistry sr = new StandardServiceRegistryBuilder().applySettings(cfg.getProperties()).build();
+	public static Session getSession(Class clana) {
+		Configuration cfg = new Configuration().configure().addClass(clana);
 		return cfg.buildSessionFactory(new StandardServiceRegistryBuilder().applySettings(cfg.getProperties()).build()).openSession();
 	}
 
 	@Override
-	public void Insert(Object obj) {
-		Session session = getSession();
+	public void Insert(Object obj, Class clana) {
+		Session session = getSession(clana);
 		session.save(obj);
 		session.beginTransaction().commit();
 		session.close();
 	}
 
 	@Override
-	public void Delete(Object obj) {
-		Session session = getSession();
-		session.delete(obj);
+	public void Delete(Object obj, Class clana) {
+        Configuration cfg = new Configuration().configure().addClass(entity.Label.class);
+        Session session = cfg.buildSessionFactory(new StandardServiceRegistryBuilder().applySettings(cfg.getProperties()).build()).openSession();
+        session.delete(obj);
 		session.beginTransaction().commit();
 		session.close();
 	}
 
 	@Override
-	public void Update(Object obj) {
-		Session session = getSession();
-		session.update(obj);
+	public void Update(Object obj, Class clana) {
+        Session session = getSession(clana);
+        session.update(obj);
 		session.beginTransaction().commit();
 		session.close();
 	}
