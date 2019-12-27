@@ -29,8 +29,8 @@ public class BaseDaoImpl implements BaseDao{
 
 	@Override
 	public void Update(Object obj, Class clana) {
-        Session session = getSession(clana);
-        session.update(obj);
+        	Session session = getSession(clana);
+        	session.update(obj);
 		session.beginTransaction().commit();
 		session.close();
 	}
