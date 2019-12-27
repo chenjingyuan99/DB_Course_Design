@@ -21,9 +21,8 @@ public class BaseDaoImpl implements BaseDao{
 
 	@Override
 	public void Delete(Object obj, Class clana) {
-        Configuration cfg = new Configuration().configure().addClass(entity.Label.class);
-        Session session = cfg.buildSessionFactory(new StandardServiceRegistryBuilder().applySettings(cfg.getProperties()).build()).openSession();
-        session.delete(obj);
+        	Session session = getSession(clana);
+		session.delete(obj);
 		session.beginTransaction().commit();
 		session.close();
 	}
