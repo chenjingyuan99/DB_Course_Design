@@ -27,7 +27,7 @@
             <column name="com_content" sql-type="varchar(16)" length="16" not-null="true"/>
         </property>
         <property name="comTime">
-            <column name="com_time" sql-type="timestamp" not-null="true"/>
+            <column name="com_time" sql-type="date" not-null="true"/>
         </property>
     </class>
 </hibernate-mapping>

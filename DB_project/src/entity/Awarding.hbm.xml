@@ -17,5 +17,8 @@
         <property name="awardObject">
             <column name="award_object" sql-type="varchar(32)" length="32" not-null="true"/>
         </property>
+        <property name="movieId">
+            <column name="movie_id" sql-type="int"/>
+        </property>
     </class>
 </hibernate-mapping>

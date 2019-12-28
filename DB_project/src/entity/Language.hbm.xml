@@ -5,11 +5,7 @@
 <hibernate-mapping>
 
     <class name="entity.Language" table="language" schema="dbo" catalog="douban_db">
-        <id name="languageId">
-            <column name="language_id" sql-type="int"/>
-        </id>
-        <property name="languageName">
-            <column name="language_name" sql-type="varchar(32)" length="32"/>
-        </property>
+        <id name="languageId" column="language_id"/>
+        <property name="languageName" column="language_name"/>
     </class>
 </hibernate-mapping>

@@ -5,14 +5,7 @@
 <hibernate-mapping>
 
     <class name="entity.Label" table="label" schema="dbo" catalog="douban_db">
-        <id name="labId">
-            <column name="lab_id" sql-type="int"/>
-        </id>
-        <property name="comId">
-            <column name="com_id" sql-type="int" not-null="true"/>
-        </property>
-        <property name="labComment">
-            <column name="lab_comment" sql-type="varchar(16)" length="16" not-null="true"/>
-        </property>
+        <id name="labId" column="lab_id"/>
+        <property name="labComment" column="lab_comment"/>
     </class>
 </hibernate-mapping>

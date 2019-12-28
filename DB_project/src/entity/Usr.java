@@ -12,9 +12,10 @@ public class Usr {
     private String usrAccount;
     private String usrNickname;
     private String usrPasswd;
+    private String usrAccntType;
 
     @Id
-    @Column(name = "usr_id", nullable = false)
+    @Column(name = "usr_id")
     public int getUsrId() {
         return usrId;
     }
@@ -24,7 +25,7 @@ public class Usr {
     }
 
     @Basic
-    @Column(name = "usr_account", nullable = false, length = 16)
+    @Column(name = "usr_account")
     public String getUsrAccount() {
         return usrAccount;
     }
@@ -34,7 +35,7 @@ public class Usr {
     }
 
     @Basic
-    @Column(name = "usr_nickname", nullable = false, length = 16)
+    @Column(name = "usr_nickname")
     public String getUsrNickname() {
         return usrNickname;
     }
@@ -44,13 +45,23 @@ public class Usr {
     }
 
     @Basic
-    @Column(name = "usr_passwd", nullable = false, length = 16)
+    @Column(name = "usr_passwd")
     public String getUsrPasswd() {
         return usrPasswd;
     }
 
     public void setUsrPasswd(String usrPasswd) {
         this.usrPasswd = usrPasswd;
+    }
+
+    @Basic
+    @Column(name = "usr_accnt_type")
+    public String getUsrAccntType() {
+        return usrAccntType;
+    }
+
+    public void setUsrAccntType(String usrAccntType) {
+        this.usrAccntType = usrAccntType;
     }
 
     @Override
@@ -61,11 +72,12 @@ public class Usr {
         return usrId == usr.usrId &&
                 Objects.equals(usrAccount, usr.usrAccount) &&
                 Objects.equals(usrNickname, usr.usrNickname) &&
-                Objects.equals(usrPasswd, usr.usrPasswd);
+                Objects.equals(usrPasswd, usr.usrPasswd) &&
+                Objects.equals(usrAccntType, usr.usrAccntType);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(usrId, usrAccount, usrNickname, usrPasswd);
+        return Objects.hash(usrId, usrAccount, usrNickname, usrPasswd, usrAccntType);
     }
 }

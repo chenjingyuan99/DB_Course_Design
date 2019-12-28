@@ -14,7 +14,7 @@ public class Comment {
     private byte comSeen;
     private Byte comStar;
     private String comContent;
-    private Object comTime;
+    private String comTime;
     private int relationId;
 
     @Basic
@@ -79,11 +79,11 @@ public class Comment {
 
     @Basic
     @Column(name = "com_time", nullable = true)
-    public Object getComTime() {
+    public String getComTime() {
         return comTime;
     }
 
-    public void setComTime(Object comTime) {
+    public void setComTime(String comTime) {
         this.comTime = comTime;
     }
 

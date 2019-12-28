@@ -5,20 +5,12 @@
 <hibernate-mapping>
 
     <class name="entity.Movie" table="movie" schema="dbo" catalog="douban_db">
-        <id name="movieId">
-            <column name="movie_id" sql-type="int"/>
-        </id>
-        <property name="movieName">
-            <column name="movie_name" sql-type="varchar(32)" length="32"/>
-        </property>
-        <property name="releaseDate">
-            <column name="release_date" sql-type="date"/>
-        </property>
-        <property name="movieTime">
-            <column name="movie_time" sql-type="int"/>
-        </property>
-        <property name="movieIntroduction">
-            <column name="movie_introduction" sql-type="varchar(400)" length="400"/>
-        </property>
+        <id name="movieId" column="movie_id"/>
+        <property name="movieName" column="movie_name"/>
+        <property name="releaseDate" column="release_date"/>
+        <property name="movieTime" column="movie_time"/>
+        <property name="movieIntroduction" column="movie_introduction"/>
+        <property name="movieImDb" column="movie_IMDb"/>
+        <property name="movieOnline" column="movie_online"/>
     </class>
 </hibernate-mapping>

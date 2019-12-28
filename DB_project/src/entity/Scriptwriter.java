@@ -12,7 +12,7 @@ public class Scriptwriter {
     private String scriptwriterName;
 
     @Id
-    @Column(name = "scriptwriter_id", nullable = false)
+    @Column(name = "scriptwriter_id")
     public int getScriptwriterId() {
         return scriptwriterId;
     }
@@ -22,7 +22,7 @@ public class Scriptwriter {
     }
 
     @Basic
-    @Column(name = "scriptwriter_name", nullable = false, length = 32)
+    @Column(name = "scriptwriter_name")
     public String getScriptwriterName() {
         return scriptwriterName;
     }

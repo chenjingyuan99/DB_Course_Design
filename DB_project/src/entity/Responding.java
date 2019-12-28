@@ -4,18 +4,19 @@ import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import java.sql.Date;
 import java.util.Objects;
 
 @Entity
 public class Responding {
     private int respondId;
     private String promulgator;
-    private Object releaseTime;
+    private String releaseTime;
     private String respondContent;
     private int discussId;
 
     @Id
-    @Column(name = "respond_id", nullable = false)
+    @Column(name = "respond_id")
     public int getRespondId() {
         return respondId;
     }
@@ -25,7 +26,7 @@ public class Responding {
     }
 
     @Basic
-    @Column(name = "promulgator", nullable = false, length = 32)
+    @Column(name = "promulgator")
     public String getPromulgator() {
         return promulgator;
     }
@@ -35,17 +36,17 @@ public class Responding {
     }
 
     @Basic
-    @Column(name = "release_time", nullable = false)
-    public Object getReleaseTime() {
+    @Column(name = "release_time")
+    public String getReleaseTime() {
         return releaseTime;
     }
 
-    public void setReleaseTime(Object releaseTime) {
+    public void setReleaseTime(String releaseTime) {
         this.releaseTime = releaseTime;
     }
 
     @Basic
-    @Column(name = "respond_content", nullable = true, length = 400)
+    @Column(name = "respond_content")
     public String getRespondContent() {
         return respondContent;
     }
@@ -55,7 +56,7 @@ public class Responding {
     }
 
     @Basic
-    @Column(name = "discuss_id", nullable = false)
+    @Column(name = "discuss_id")
     public int getDiscussId() {
         return discussId;
     }

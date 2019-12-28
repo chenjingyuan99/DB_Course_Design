@@ -1,0 +1,15 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+
+    <class name="entity.Filmcritic" table="filmcritic" schema="dbo" catalog="douban_db">
+        <id name="filmcriticId">
+            <column name="filmcritic _id" sql-type="int"/>
+        </id>
+        <property name="topicsId">
+            <column name="topics_id" sql-type="int"/>
+        </property>
+    </class>
+</hibernate-mapping>

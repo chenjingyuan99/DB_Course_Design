@@ -6,22 +6,12 @@ import java.util.Objects;
 @Entity
 @Table(name = "movie_language", schema = "dbo", catalog = "douban_db")
 public class MovieLanguage {
-    private int relationId;
     private int languageId;
     private int movieId;
-
-    @Id
-    @Column(name = "relation_id", nullable = false)
-    public int getRelationId() {
-        return relationId;
-    }
-
-    public void setRelationId(int relationId) {
-        this.relationId = relationId;
-    }
+    private int relationId;
 
     @Basic
-    @Column(name = "language_id", nullable = false)
+    @Column(name = "language_id")
     public int getLanguageId() {
         return languageId;
     }
@@ -31,7 +21,7 @@ public class MovieLanguage {
     }
 
     @Basic
-    @Column(name = "movie_id", nullable = false)
+    @Column(name = "movie_id")
     public int getMovieId() {
         return movieId;
     }
@@ -40,18 +30,28 @@ public class MovieLanguage {
         this.movieId = movieId;
     }
 
+    @Id
+    @Column(name = "relation_id")
+    public int getRelationId() {
+        return relationId;
+    }
+
+    public void setRelationId(int relationId) {
+        this.relationId = relationId;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         MovieLanguage that = (MovieLanguage) o;
-        return relationId == that.relationId &&
-                languageId == that.languageId &&
-                movieId == that.movieId;
+        return languageId == that.languageId &&
+                movieId == that.movieId &&
+                relationId == that.relationId;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(relationId, languageId, movieId);
+        return Objects.hash(languageId, movieId, relationId);
     }
 }

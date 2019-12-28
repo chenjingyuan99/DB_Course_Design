@@ -15,10 +15,13 @@
             <column name="promulgator" sql-type="varchar(32)" length="32"/>
         </property>
         <property name="releaseTime">
-            <column name="release_time" sql-type="timestamp"/>
+            <column name="release_time" sql-type="date"/>
         </property>
         <property name="discussContent">
             <column name="discuss_content" sql-type="varchar(400)" length="400" not-null="true"/>
+        </property>
+        <property name="groupId">
+            <column name="group_id" sql-type="int"/>
         </property>
     </class>
 </hibernate-mapping>

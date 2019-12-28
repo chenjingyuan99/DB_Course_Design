@@ -12,7 +12,7 @@ public class Language {
     private String languageName;
 
     @Id
-    @Column(name = "language_id", nullable = false)
+    @Column(name = "language_id")
     public int getLanguageId() {
         return languageId;
     }
@@ -22,7 +22,7 @@ public class Language {
     }
 
     @Basic
-    @Column(name = "language_name", nullable = false, length = 32)
+    @Column(name = "language_name")
     public String getLanguageName() {
         return languageName;
     }

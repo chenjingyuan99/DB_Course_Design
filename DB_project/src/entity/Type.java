@@ -12,7 +12,7 @@ public class Type {
     private String typeName;
 
     @Id
-    @Column(name = "type_id", nullable = false)
+    @Column(name = "type_id")
     public int getTypeId() {
         return typeId;
     }
@@ -22,7 +22,7 @@ public class Type {
     }
 
     @Basic
-    @Column(name = "type_name", nullable = false, length = 32)
+    @Column(name = "type_name")
     public String getTypeName() {
         return typeName;
     }

@@ -5,14 +5,8 @@
 <hibernate-mapping>
 
     <class name="entity.Script" table="script" schema="dbo" catalog="douban_db">
-        <id name="relationId">
-            <column name="relation_id" sql-type="int"/>
-        </id>
-        <property name="scriptwriterId">
-            <column name="scriptwriter_id" sql-type="int"/>
-        </property>
-        <property name="movieId">
-            <column name="movie_id" sql-type="int"/>
-        </property>
+        <id name="relationId" column="relation_id"/>
+        <property name="scriptwriterId" column="scriptwriter_id"/>
+        <property name="movieId" column="movie_id"/>
     </class>
 </hibernate-mapping>

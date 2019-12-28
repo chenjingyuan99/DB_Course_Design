@@ -9,11 +9,10 @@ import java.util.Objects;
 @Entity
 public class Label {
     private int labId;
-    private Integer comId;
     private String labComment;
 
     @Id
-    @Column(name = "lab_id", nullable = false)
+    @Column(name = "lab_id")
     public int getLabId() {
         return labId;
     }
@@ -23,17 +22,7 @@ public class Label {
     }
 
     @Basic
-    @Column(name = "com_id", nullable = true)
-    public Integer getComId() {
-        return comId;
-    }
-
-    public void setComId(Integer comId) {
-        this.comId = comId;
-    }
-
-    @Basic
-    @Column(name = "lab_comment", nullable = true, length = 16)
+    @Column(name = "lab_comment")
     public String getLabComment() {
         return labComment;
     }
@@ -48,12 +37,11 @@ public class Label {
         if (o == null || getClass() != o.getClass()) return false;
         Label label = (Label) o;
         return labId == label.labId &&
-                Objects.equals(comId, label.comId) &&
                 Objects.equals(labComment, label.labComment);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(labId, comId, labComment);
+        return Objects.hash(labId, labComment);
     }
 }

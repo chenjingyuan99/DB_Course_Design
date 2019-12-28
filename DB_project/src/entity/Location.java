@@ -8,22 +8,12 @@ import java.util.Objects;
 
 @Entity
 public class Location {
-    private int relationId;
     private int regionId;
     private int movieId;
-
-    @Id
-    @Column(name = "relation_id", nullable = false)
-    public int getRelationId() {
-        return relationId;
-    }
-
-    public void setRelationId(int relationId) {
-        this.relationId = relationId;
-    }
+    private int relationId;
 
     @Basic
-    @Column(name = "region_id", nullable = false)
+    @Column(name = "region_id")
     public int getRegionId() {
         return regionId;
     }
@@ -33,7 +23,7 @@ public class Location {
     }
 
     @Basic
-    @Column(name = "movie_id", nullable = false)
+    @Column(name = "movie_id")
     public int getMovieId() {
         return movieId;
     }
@@ -42,18 +32,28 @@ public class Location {
         this.movieId = movieId;
     }
 
+    @Id
+    @Column(name = "relation_id")
+    public int getRelationId() {
+        return relationId;
+    }
+
+    public void setRelationId(int relationId) {
+        this.relationId = relationId;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Location location = (Location) o;
-        return relationId == location.relationId &&
-                regionId == location.regionId &&
-                movieId == location.movieId;
+        return regionId == location.regionId &&
+                movieId == location.movieId &&
+                relationId == location.relationId;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(relationId, regionId, movieId);
+        return Objects.hash(regionId, movieId, relationId);
     }
 }

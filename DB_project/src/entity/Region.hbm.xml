@@ -5,11 +5,7 @@
 <hibernate-mapping>
 
     <class name="entity.Region" table="region" schema="dbo" catalog="douban_db">
-        <id name="regionId">
-            <column name="region_id" sql-type="int"/>
-        </id>
-        <property name="regionName">
-            <column name="region_name" sql-type="varchar(32)" length="32"/>
-        </property>
+        <id name="regionId" column="region_id"/>
+        <property name="regionName" column="region_name"/>
     </class>
 </hibernate-mapping>

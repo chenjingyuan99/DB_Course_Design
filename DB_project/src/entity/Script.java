@@ -8,22 +8,12 @@ import java.util.Objects;
 
 @Entity
 public class Script {
-    private int relationId;
     private int scriptwriterId;
     private int movieId;
-
-    @Id
-    @Column(name = "relation_id", nullable = false)
-    public int getRelationId() {
-        return relationId;
-    }
-
-    public void setRelationId(int relationId) {
-        this.relationId = relationId;
-    }
+    private int relationId;
 
     @Basic
-    @Column(name = "scriptwriter_id", nullable = false)
+    @Column(name = "scriptwriter_id")
     public int getScriptwriterId() {
         return scriptwriterId;
     }
@@ -33,7 +23,7 @@ public class Script {
     }
 
     @Basic
-    @Column(name = "movie_id", nullable = false)
+    @Column(name = "movie_id")
     public int getMovieId() {
         return movieId;
     }
@@ -42,18 +32,28 @@ public class Script {
         this.movieId = movieId;
     }
 
+    @Id
+    @Column(name = "relation_id")
+    public int getRelationId() {
+        return relationId;
+    }
+
+    public void setRelationId(int relationId) {
+        this.relationId = relationId;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Script script = (Script) o;
-        return relationId == script.relationId &&
-                scriptwriterId == script.scriptwriterId &&
-                movieId == script.movieId;
+        return scriptwriterId == script.scriptwriterId &&
+                movieId == script.movieId &&
+                relationId == script.relationId;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(relationId, scriptwriterId, movieId);
+        return Objects.hash(scriptwriterId, movieId, relationId);
     }
 }

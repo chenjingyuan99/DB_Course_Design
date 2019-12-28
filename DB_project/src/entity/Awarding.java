@@ -12,6 +12,7 @@ public class Awarding {
     private String awardsName;
     private String activities;
     private String awardObject;
+    private int movieId;
 
     @Id
     @Column(name = "awards_id", nullable = false)
@@ -53,12 +54,23 @@ public class Awarding {
         this.awardObject = awardObject;
     }
 
+    @Basic
+    @Column(name = "movie_id", nullable = false)
+    public int getMovieId() {
+        return movieId;
+    }
+
+    public void setMovieId(int movieId) {
+        this.movieId = movieId;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Awarding awarding = (Awarding) o;
         return awardsId == awarding.awardsId &&
+                movieId == awarding.movieId &&
                 Objects.equals(awardsName, awarding.awardsName) &&
                 Objects.equals(activities, awarding.activities) &&
                 Objects.equals(awardObject, awarding.awardObject);
@@ -66,6 +78,6 @@ public class Awarding {
 
     @Override
     public int hashCode() {
-        return Objects.hash(awardsId, awardsName, activities, awardObject);
+        return Objects.hash(awardsId, awardsName, activities, awardObject, movieId);
     }
 }

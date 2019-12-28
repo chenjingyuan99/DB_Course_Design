@@ -12,7 +12,7 @@ public class Region {
     private String regionName;
 
     @Id
-    @Column(name = "region_id", nullable = false)
+    @Column(name = "region_id")
     public int getRegionId() {
         return regionId;
     }
@@ -22,7 +22,7 @@ public class Region {
     }
 
     @Basic
-    @Column(name = "region_name", nullable = false, length = 32)
+    @Column(name = "region_name")
     public String getRegionName() {
         return regionName;
     }

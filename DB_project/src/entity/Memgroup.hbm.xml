@@ -4,9 +4,9 @@
     "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 <hibernate-mapping>
 
-    <class name="entity.MovieLanguage" table="movie_language" schema="dbo" catalog="douban_db">
-        <id name="relationId" column="relation_id"/>
-        <property name="languageId" column="language_id"/>
+    <class name="entity.Memgroup" table="memgroup" schema="dbo" catalog="douban_db">
+        <property name="groupId" column="group_id"/>
+        <property name="groupName" column="group_name"/>
         <property name="movieId" column="movie_id"/>
     </class>
 </hibernate-mapping>

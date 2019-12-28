@@ -11,12 +11,14 @@ import java.util.Objects;
 public class Movie {
     private int movieId;
     private String movieName;
-    private Date releaseDate;
+    private String releaseDate;
     private int movieTime;
     private String movieIntroduction;
+    private String movieImDb;
+    private byte movieOnline;
 
     @Id
-    @Column(name = "movie_id", nullable = false)
+    @Column(name = "movie_id")
     public int getMovieId() {
         return movieId;
     }
@@ -26,7 +28,7 @@ public class Movie {
     }
 
     @Basic
-    @Column(name = "movie_name", nullable = false, length = 32)
+    @Column(name = "movie_name")
     public String getMovieName() {
         return movieName;
     }
@@ -36,17 +38,17 @@ public class Movie {
     }
 
     @Basic
-    @Column(name = "release_date", nullable = false)
-    public Date getReleaseDate() {
+    @Column(name = "release_date")
+    public String getReleaseDate() {
         return releaseDate;
     }
 
-    public void setReleaseDate(Date releaseDate) {
+    public void setReleaseDate(String releaseDate) {
         this.releaseDate = releaseDate;
     }
 
     @Basic
-    @Column(name = "movie_time", nullable = false)
+    @Column(name = "movie_time")
     public int getMovieTime() {
         return movieTime;
     }
@@ -56,13 +58,33 @@ public class Movie {
     }
 
     @Basic
-    @Column(name = "movie_introduction", nullable = false, length = 400)
+    @Column(name = "movie_introduction")
     public String getMovieIntroduction() {
         return movieIntroduction;
     }
 
     public void setMovieIntroduction(String movieIntroduction) {
         this.movieIntroduction = movieIntroduction;
+    }
+
+    @Basic
+    @Column(name = "movie_IMDb")
+    public String getMovieImDb() {
+        return movieImDb;
+    }
+
+    public void setMovieImDb(String movieImDb) {
+        this.movieImDb = movieImDb;
+    }
+
+    @Basic
+    @Column(name = "movie_online")
+    public byte getMovieOnline() {
+        return movieOnline;
+    }
+
+    public void setMovieOnline(byte movieOnline) {
+        this.movieOnline = movieOnline;
     }
 
     @Override
@@ -72,13 +94,15 @@ public class Movie {
         Movie movie = (Movie) o;
         return movieId == movie.movieId &&
                 movieTime == movie.movieTime &&
+                movieOnline == movie.movieOnline &&
                 Objects.equals(movieName, movie.movieName) &&
                 Objects.equals(releaseDate, movie.releaseDate) &&
-                Objects.equals(movieIntroduction, movie.movieIntroduction);
+                Objects.equals(movieIntroduction, movie.movieIntroduction) &&
+                Objects.equals(movieImDb, movie.movieImDb);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(movieId, movieName, releaseDate, movieTime, movieIntroduction);
+        return Objects.hash(movieId, movieName, releaseDate, movieTime, movieIntroduction, movieImDb, movieOnline);
     }
 }
