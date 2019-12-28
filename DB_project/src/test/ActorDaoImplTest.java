@@ -12,7 +12,7 @@ import java.util.List;
 import static org.junit.Assert.*;
 
 public class ActorDaoImplTest extends Actor {
-
+    Class clone=Actor.class;
     @Before
     public void setUp() throws Exception {
     }
@@ -26,13 +26,13 @@ public class ActorDaoImplTest extends Actor {
     }
 
     @Test
-    public void save() {
+    public void Insert() {
         System.out.println("增加演员信息");
 
         System.out.println("增加演员信息");
 
-        int i=6;
-        int j=7;
+        int i=1;
+        int j=2;
         ActorDao dao = new ActorDaoImpl();
         Actor a1=dao.findByID(i);
         Actor a2=dao.findByID(j);
@@ -44,11 +44,11 @@ public class ActorDaoImplTest extends Actor {
             actor.setActorName("Hope");
             actor.setActorId(i);
             actor.setIsStar((byte) 1);
-            dao.save(actor);
+            dao.Insert(actor,clone);
             actor.setActorName("Hobi");
             actor.setActorId(j);
             actor.setIsStar((byte)0);
-            dao.save(actor);
+            dao.Insert(actor,clone);
             //验证是否增加演员信息成功
             Actor a = dao.findByID(i);
             Actor b = dao.findByID(j);
@@ -61,14 +61,14 @@ public class ActorDaoImplTest extends Actor {
     }
 
     @Test
-    public void delete() {
+    public void Delete() {
         System.out.println("删除一行指定演员ID信息");
-        int i=1;
+        int i=2;
         ActorDao dao=new ActorDaoImpl();
         Actor actor= dao.findByID(i);
         if(actor!=null) {
             try {
-                dao.delete(actor);
+                dao.Delete(actor,clone);
             }catch (Exception e) {
                 //System.err.println("Delete Error!");
                 System.out.println(e.getMessage());
@@ -85,9 +85,9 @@ public class ActorDaoImplTest extends Actor {
     }
 
     @Test
-    public void update() {
+    public void Update() {
         System.out.println("更新一行信息中的某些元素");
-        int i=2;
+        int i=1;
         ActorDao dao=new ActorDaoImpl();
         Actor actor=dao.findByID(i);
         //判断记录是否存在
@@ -98,7 +98,7 @@ public class ActorDaoImplTest extends Actor {
         else
         {
             actor.setActorName("yonggi");
-            dao.update(actor);
+            dao.Update(actor,clone);
             //验证是否更新成功
             Actor a=dao.findByID(i);
             if(!a.getActorName().equals("yonggi"))
@@ -142,7 +142,7 @@ public class ActorDaoImplTest extends Actor {
     public void findByName() {
         System.out.println("通过查找演员名字输出所有信息");
         ActorDao dao = new ActorDaoImpl();
-        String i="jungkook";
+        String i="Hobi";
         List<Actor> actors= dao.findByName(i);
         for(int j = 0; j < actors.size(); j++) {
             Actor a = actors.get(j);

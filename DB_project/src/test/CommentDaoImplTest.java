@@ -12,7 +12,7 @@ import java.util.List;
 import static org.junit.Assert.*;
 
 public class CommentDaoImplTest extends Comment {
-
+    Class clone=Comment.class;
     @Before
     public void setUp() throws Exception {
     }
@@ -26,13 +26,13 @@ public class CommentDaoImplTest extends Comment {
     }
 
     @Test
-    public void save() {
+    public void Insert() {
         System.out.println("增加评论信息");
 
         System.out.println("增加评论信息");
 
-        int i=6;
-        int j=7;
+        int i=1;
+        int j=2;
         CommentDao dao = new CommentDaoImpl();
         Comment a1=dao.findByID(i);
         Comment a2=dao.findByID(j);
@@ -49,15 +49,16 @@ public class CommentDaoImplTest extends Comment {
             comment.setComTime("1995-09-10");
             comment.setMovId(3);
             comment.setUsrId(3);
-            dao.save(comment);
+            dao.Insert(comment,clone);
             comment.setComId(2);
+            comment.setRelationId(j);
             comment.setComStar((byte)0);
             comment.setComSeen((byte)0);
             comment.setComContent("none_1");
             comment.setComTime("1999-10-10");
             comment.setMovId(2);
             comment.setUsrId(2);
-            dao.save(comment);
+            dao.Insert(comment,clone);
             //验证是否增加评价信息成功
             Comment a = dao.findByID(i);
             Comment b = dao.findByID(j);
@@ -71,14 +72,14 @@ public class CommentDaoImplTest extends Comment {
     }
 
     @Test
-    public void delete() {
+    public void Delete() {
         System.out.println("删除一行指定评论关系ID信息");
         int i=2;
         CommentDao dao=new CommentDaoImpl();
         Comment comment= dao.findByID(i);
         if(comment!=null) {
             try {
-                dao.delete(comment);
+                dao.Delete(comment,clone);
             }catch (Exception e) {
                 //System.err.println("Delete Error!");
                 System.out.println(e.getMessage());
@@ -95,9 +96,9 @@ public class CommentDaoImplTest extends Comment {
     }
 
     @Test
-    public void update() {
+    public void Update() {
         System.out.println("更新一行信息某列元素");
-        int i=2;
+        int i=1;
         CommentDao dao=new CommentDaoImpl();
         Comment comment=dao.findByID(i);
         //判断该评论ID是否存在
@@ -106,7 +107,7 @@ public class CommentDaoImplTest extends Comment {
         }
         else {
             comment.setComSeen((byte)1);
-            dao.update(comment);
+            dao.Update(comment,clone);
             //验证是否更新评论信息成功
             Comment a = dao.findByID(i);
             if(a.getComSeen()!=1) {

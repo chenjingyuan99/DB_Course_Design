@@ -12,7 +12,7 @@ import java.util.List;
 import static org.junit.Assert.*;
 
 public class ClassifyDaoImplTest extends Classify {
-
+    Class clone=Classify.class;
     @Before
     public void setUp() throws Exception {
     }
@@ -26,13 +26,13 @@ public class ClassifyDaoImplTest extends Classify {
     }
 
     @Test
-    public void save() {
+    public void Insert() {
         System.out.println("增加分类信息");
 
         System.out.println("增加分类信息");
 
-        int i=6;
-        int j=7;
+        int i=1;
+        int j=2;
         ClassifyDao dao = new ClassifyDaoImpl();
         Classify a1=dao.findByID(i);
         Classify a2=dao.findByID(j);
@@ -44,11 +44,11 @@ public class ClassifyDaoImplTest extends Classify {
             classify.setMovieId(1);
             classify.setTypeId(2);
             classify.setRelationId(i);
-            dao.save(classify);
+            dao.Insert(classify,clone);
             classify.setTypeId(1);
             classify.setMovieId(2);
             classify.setRelationId(j);
-            dao.save(classify);
+            dao.Insert(classify,clone);
             //验证是否增加分类信息成功
             Classify a = dao.findByID(i);
             Classify b = dao.findByID(j);
@@ -62,14 +62,14 @@ public class ClassifyDaoImplTest extends Classify {
     }
 
     @Test
-    public void delete() {
+    public void Delete() {
         System.out.println("删除一行指定分类关系ID的信息");
         int i=2;
         ClassifyDao dao=new ClassifyDaoImpl();
         Classify classify= dao.findByID(i);
         if(classify!=null) {
             try {
-                dao.delete(classify);
+                dao.Delete(classify,clone);
             }catch (Exception e) {
                 //System.err.println("Delete Error!");
                 System.out.println(e.getMessage());
@@ -86,9 +86,9 @@ public class ClassifyDaoImplTest extends Classify {
     }
 
     @Test
-    public void update() {
+    public void Update() {
         System.out.println("更新一行信息某列元素");
-        int i=2;
+        int i=1;
         ClassifyDao dao=new ClassifyDaoImpl();
         Classify classify=dao.findByID(i);
         //判断该类型ID是否存在
@@ -97,7 +97,7 @@ public class ClassifyDaoImplTest extends Classify {
         }
         else {
             classify.setTypeId(1);
-            dao.update(classify);
+            dao.Update(classify,clone);
             //验证是否更新地址信息成功
             Classify a = dao.findByID(i);
             if(a.getTypeId()!=1) {

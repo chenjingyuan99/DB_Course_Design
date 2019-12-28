@@ -12,7 +12,7 @@ import java.util.List;
 import static org.junit.Assert.*;
 
 public class AwardsDaoImplTest extends Awards {
-
+    Class clone=Awards.class;
     @Before
     public void setUp() throws Exception {
 
@@ -27,14 +27,14 @@ public class AwardsDaoImplTest extends Awards {
     }
 
     @Test
-    public void save() {
+    public void Insert() {
 
         System.out.println("增加获奖信息");
 
         System.out.println("增加获奖信息");
 
-        int i=6;
-        int j=7;
+        int i=1;
+        int j=2;
         AwardsDao dao = new AwardsDaoImpl();
         Awards a1=dao.findByID(i);
         Awards a2=dao.findByID(j);
@@ -46,11 +46,11 @@ public class AwardsDaoImplTest extends Awards {
             awards.setMovieId(4);
             awards.setRelationId(i);
             awards.setAwardsId(1);
-            dao.save(awards);
+            dao.Insert(awards,clone);
             awards.setMovieId(5);
             awards.setRelationId(j);
             awards.setAwardsId(2);
-            dao.save(awards);
+            dao.Insert(awards,clone);
             //验证是否增加获奖信息成功
             Awards a = dao.findByID(i);
             Awards b = dao.findByID(j);
@@ -63,14 +63,14 @@ public class AwardsDaoImplTest extends Awards {
     }
 
     @Test
-    public void delete() {
+    public void Delete() {
         System.out.println("删除一行指定获奖关系ID信息");
         int i=2;
         AwardsDao dao=new AwardsDaoImpl();
         Awards awards= dao.findByID(i);
         if(awards!=null) {
             try {
-                dao.delete(awards);
+                dao.Delete(awards,clone);
             }catch (Exception e) {
                 //System.err.println("Delete Error!");
                 System.out.println(e.getMessage());
@@ -87,7 +87,7 @@ public class AwardsDaoImplTest extends Awards {
     }
 
     @Test
-    public void update() {
+    public void Update() {
         System.out.println("更新一行信息某列元素");
         int i=1;
         AwardsDao dao=new AwardsDaoImpl();
@@ -98,7 +98,7 @@ public class AwardsDaoImplTest extends Awards {
         }
         else {
             awards.setMovieId(1);
-            dao.update(awards);
+            dao.Update(awards,clone);
             //验证是否更新获奖信息成功
             Awards a = dao.findByID(i);
             if(a.getMovieId()!=1) {

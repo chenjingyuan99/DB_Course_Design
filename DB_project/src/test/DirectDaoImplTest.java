@@ -12,7 +12,7 @@ import java.util.List;
 import static org.junit.Assert.*;
 
 public class DirectDaoImplTest extends Direct {
-
+    Class clone=Direct.class;
     @Before
     public void setUp() throws Exception {
 
@@ -27,13 +27,13 @@ public class DirectDaoImplTest extends Direct {
     }
 
     @Test
-    public void save() {
+    public void Insert() {
         System.out.println("增加导演信息");
 
         System.out.println("增加导演信息");
 
-        int i=6;
-        int j=7;
+        int i=1;
+        int j=2;
         DirectDao dao = new DirectDaoImpl();
         Direct a1=dao.findByID(i);
         Direct a2=dao.findByID(j);
@@ -45,11 +45,11 @@ public class DirectDaoImplTest extends Direct {
             direct.setDirectorId(1);
             direct.setRelationId(i);
             direct.setMovieId(4);
-            dao.save(direct);
+            dao.Insert(direct,clone);
             direct.setDirectorId(2);
             direct.setRelationId(j);
             direct.setMovieId(5);
-            dao.save(direct);
+            dao.Insert(direct,clone);
             //验证是否增加导演信息成功
             Direct a = dao.findByID(i);
             Direct b = dao.findByID(j);
@@ -62,14 +62,14 @@ public class DirectDaoImplTest extends Direct {
     }
 
     @Test
-    public void delete() {
+    public void Delete() {
         System.out.println("删除一行指定导演关系ID的信息");
         int i=2;
         DirectDao dao=new DirectDaoImpl();
         Direct direct= dao.findByID(i);
         if(direct!=null) {
             try {
-                dao.delete(direct);
+                dao.Delete(direct,clone);
             }catch (Exception e) {
                 //System.err.println("Delete Error!");
                 System.out.println(e.getMessage());
@@ -87,9 +87,9 @@ public class DirectDaoImplTest extends Direct {
     }
 
     @Test
-    public void update() {
+    public void Update() {
         System.out.println("更新一行信息某列元素");
-        int i=2;
+        int i=1;
         DirectDao dao=new DirectDaoImpl();
         Direct direct=dao.findByID(i);
         //判断该导演关系ID是否存在
@@ -98,7 +98,7 @@ public class DirectDaoImplTest extends Direct {
         }
         else {
             direct.setMovieId(1);
-            dao.update(direct);
+            dao.Update(direct,clone);
             //验证是否更新导演信息成功
             Direct a = dao.findByID(i);
             if(a.getMovieId()!=1) {

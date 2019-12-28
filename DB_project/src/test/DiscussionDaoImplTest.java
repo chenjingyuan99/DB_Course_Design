@@ -9,10 +9,8 @@ import org.junit.Test;
 
 import java.util.List;
 
-import static org.junit.Assert.*;
-
 public class DiscussionDaoImplTest extends Discussion {
-
+    Class clone= Discussion.class;
     @Before
     public void setUp() throws Exception {
     }
@@ -26,13 +24,13 @@ public class DiscussionDaoImplTest extends Discussion {
     }
 
     @Test
-    public void save() {
+    public void Insert() {
         System.out.println("增加讨论信息");
 
         System.out.println("增加讨论信息");
 
-        int i=6;
-        int j=7;
+        int i=1;
+        int j=2;
         DiscussionDao dao = new DiscussionDaoImpl();
         Discussion a1=dao.findByID(i);
         Discussion a2=dao.findByID(j);
@@ -45,14 +43,16 @@ public class DiscussionDaoImplTest extends Discussion {
             discussion.setDiscussId(i);
             discussion.setDiscussTopic("剧情");
             discussion.setPromulgator("blacksheep");
-            discussion.setReleaseTime("1993-03-09 0:0:0");
-            dao.save(discussion);
+            discussion.setReleaseTime("1993-03-09");
+            discussion.setGroupId(1);
+            dao.Insert(discussion,clone);
             discussion.setDiscussContent("xxxx");
             discussion.setDiscussId(j);
             discussion.setDiscussTopic("人物");
             discussion.setPromulgator("lumingfei");
-            discussion.setReleaseTime("1997-09-12 0:0:0");
-            dao.save(discussion);
+            discussion.setReleaseTime("1997-09-12");
+            discussion.setGroupId(2);
+            dao.Insert(discussion,clone);
             //验证是否增加讨论信息成功
             Discussion a = dao.findByID(i);
             Discussion b = dao.findByID(j);
@@ -65,14 +65,14 @@ public class DiscussionDaoImplTest extends Discussion {
     }
 
     @Test
-    public void delete() {
+    public void Delete() {
         System.out.println("删除一行指定讨论ID信息");
         int i=2;
         DiscussionDao dao=new DiscussionDaoImpl();
         Discussion discussion= dao.findByID(i);
         if(discussion!=null) {
             try {
-                dao.delete(discussion);
+                dao.Delete(discussion,clone);
             }catch (Exception e) {
                 //System.err.println("Delete Error!");
                 System.out.println(e.getMessage());
@@ -89,9 +89,9 @@ public class DiscussionDaoImplTest extends Discussion {
     }
 
     @Test
-    public void update() {
+    public void Update() {
         System.out.println("更新一行信息某列元素");
-        int i=13;
+        int i=1;
         DiscussionDao dao=new DiscussionDaoImpl();
         Discussion discussion=dao.findByID(i);
         //判断该讨论ID是否存在
@@ -100,7 +100,7 @@ public class DiscussionDaoImplTest extends Discussion {
         }
         else {
             discussion.setDiscussTopic("change");
-            dao.update(discussion);
+            dao.Update(discussion,clone);
             //验证是否更新地址信息成功
             Discussion a = dao.findByID(i);
             if(!a.getDiscussTopic().equals("change")) {
@@ -114,7 +114,7 @@ public class DiscussionDaoImplTest extends Discussion {
     public void findByID() {
         System.out.println("通过讨论ID输出一行信息");
         DiscussionDao dao = new DiscussionDaoImpl();
-        int i=2;
+        int i=1;
         Discussion a = dao.findByID(i);
         //测试是否找到该讨论ID
         if(a == null) {
@@ -131,7 +131,7 @@ public class DiscussionDaoImplTest extends Discussion {
         List<Discussion> discussionsis = dao.findAll();
         for(int i = 0; i < discussionsis.size(); i++) {
             Discussion a = discussionsis.get(i);
-            System.out.println(a.getDiscussContent()+" "+a.getDiscussTopic()+" "+a.getPromulgator()+" "+a.getDiscussId()+" "+a.getReleaseTime()+" ");
+            System.out.println(a.getDiscussContent()+" "+a.getGroupId()+" "+a.getDiscussTopic()+" "+a.getPromulgator()+" "+a.getDiscussId()+" "+a.getReleaseTime()+" ");
         }
         System.out.println("列出所有讨论信息成功!");
     }
@@ -140,11 +140,11 @@ public class DiscussionDaoImplTest extends Discussion {
     public void findByName() {
         System.out.println("通过查找讨论主题输出所有讨论信息");
         DiscussionDao dao  = new DiscussionDaoImpl();
-        String i="经典";
+        String i="剧情";
         List<Discussion> discussions = dao.findByName(i);
         for(int j = 0; j < discussions.size(); j++) {
             Discussion a = discussions.get(j);
-            System.out.println(a.getDiscussContent()+" "+a.getDiscussId()+" "+a.getReleaseTime()+" "+a.getPromulgator()+" "+a.getDiscussTopic());
+            System.out.println(a.getDiscussContent()+" "+a.getGroupId()+" "+a.getDiscussId()+" "+a.getReleaseTime()+" "+a.getPromulgator()+" "+a.getDiscussTopic());
         }
         System.out.println("查找讨论主题为"+i+" 的所有讨论信息成功!");
     }

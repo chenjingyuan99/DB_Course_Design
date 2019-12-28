@@ -12,7 +12,7 @@ import java.util.List;
 import static org.junit.Assert.*;
 
 public class ActDaoImplTest extends Act {
-
+    Class clone=Act.class;
     @Before
     public void setUp() throws Exception {
     }
@@ -26,11 +26,11 @@ public class ActDaoImplTest extends Act {
     }
 
     @Test
-    public void save() {
+    public void Insert() {
         System.out.println("增加参演信息");
         System.out.println("增加参演信息");
-        int i=4;
-        int j=5;
+        int i=1;
+        int j=2;
         ActDao dao=new ActDaoImpl();
         Act a1=dao.findByID(i);
         Act a2=dao.findByID(j);
@@ -39,16 +39,17 @@ public class ActDaoImplTest extends Act {
         }
         else{
             Act act=new Act();
+            System.out.println("增加参演信息");
             act.setRelationId(i);
             act.setMovieId(4);
             act.setActorId(1);
             act.setRoleName("jungkook");
-            dao.save(act);
+            dao.Insert(act,clone);
             act.setMovieId(5);
             act.setActorId(5);
             act.setRelationId(j);
             act.setRoleName("jin");
-            dao.save(act);
+            dao.Insert(act,clone);
             Act a=dao.findByID(i);
             Act b=dao.findByID(j);
             if(a==null||b==null)
@@ -63,15 +64,15 @@ public class ActDaoImplTest extends Act {
     }
 
     @Test
-    public void delete() {
+    public void Delete() {
         System.out.println("删除一行指定参演关系ID的参演信息");
-        int i=4;
+        int i=2;
         ActDao dao=new ActDaoImpl();
         Act act=dao.findByID(i);
         if(act!=null)
         {
             try{
-                dao.delete(act);
+                dao.Delete(act,clone);
             }catch(Exception e){
                 System.out.println(e.getMessage());
             }
@@ -89,7 +90,7 @@ public class ActDaoImplTest extends Act {
     }
 
     @Test
-    public void update() {
+    public void Update() {
         System.out.println("更新一个记录中的某个元素");
         int i=1;
         ActDao dao=new ActDaoImpl();
@@ -101,7 +102,7 @@ public class ActDaoImplTest extends Act {
         }
         else{
             act.setRoleName("jimin");
-            dao.update(act);
+            dao.Update(act,clone);
             //验证是否更新成功
             Act a=dao.findByID(i);
             if(!a.getRoleName().equals("jimin")){
@@ -173,7 +174,7 @@ public class ActDaoImplTest extends Act {
     public void findByName() {
         System.out.println("通过查找角色名称输出所有参演信息");
         ActDao dao =new ActDaoImpl();
-        String role_name="suga";
+        String role_name="jimin";
         List<Act> act=dao.findByName(role_name);
         for(int i=0;i<act.size();i++) {
             Act a=act.get(i);

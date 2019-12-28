@@ -12,7 +12,7 @@ import java.util.List;
 import static org.junit.Assert.*;
 
 public class DiscussDaoImplTest extends Discuss {
-
+    Class clone=Discuss.class;
     @Before
     public void setUp() throws Exception {
     }
@@ -26,13 +26,13 @@ public class DiscussDaoImplTest extends Discuss {
     }
 
     @Test
-    public void save() {
+    public void Insert() {
         System.out.println("增加讨论关系信息");
 
         System.out.println("增加讨论关系信息");
 
-        int i=6;
-        int j=7;
+        int i=1;
+        int j=2;
         DiscussDao dao = new DiscussDaoImpl();
         Discuss a1=dao.findByID(i);
         Discuss a2=dao.findByID(j);
@@ -44,11 +44,11 @@ public class DiscussDaoImplTest extends Discuss {
             discuss.setDiscussId(3);
             discuss.setMovieId(3);
             discuss.setRelationId(i);
-            dao.save(discuss);
+            dao.Insert(discuss,clone);
             discuss.setDiscussId(4);
             discuss.setMovieId(4);
             discuss.setRelationId(j);
-            dao.save(discuss);
+            dao.Insert(discuss,clone);
             //验证是否增加讨论信息成功
             Discuss a = dao.findByID(i);
             Discuss b = dao.findByID(j);
@@ -61,14 +61,14 @@ public class DiscussDaoImplTest extends Discuss {
     }
 
     @Test
-    public void delete() {
+    public void Delete() {
         System.out.println("删除一行指定讨论关系ID信息");
         int i=2;
         DiscussDao dao=new DiscussDaoImpl();
         Discuss discuss = dao.findByID(i);
         if(discuss!=null) {
             try {
-                dao.delete(discuss);
+                dao.Delete(discuss,clone);
             }catch (Exception e) {
                 //System.err.println("Delete Error!");
                 System.out.println(e.getMessage());
@@ -85,9 +85,9 @@ public class DiscussDaoImplTest extends Discuss {
     }
 
     @Test
-    public void update() {
+    public void Update() {
         System.out.println("更新一行信息某列元素");
-        int i=2;
+        int i=1;
         DiscussDao dao=new DiscussDaoImpl();
         Discuss discuss=dao.findByID(i);
         //判断该讨论关系ID是否存在
@@ -96,7 +96,7 @@ public class DiscussDaoImplTest extends Discuss {
         }
         else {
             discuss.setMovieId(1);
-            dao.update(discuss);
+            dao.Update(discuss,clone);
             //验证是否更新讨论信息成功
             Discuss a = dao.findByID(i);
             if(a.getMovieId()!=1) {

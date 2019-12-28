@@ -9,10 +9,8 @@ import org.junit.Test;
 
 import java.util.List;
 
-import static org.junit.Assert.*;
-
 public class AwardingDaoImplTest extends Awarding {
-
+    Class clone= Awarding.class;
     @Before
     public void setUp() throws Exception {
     }
@@ -26,13 +24,13 @@ public class AwardingDaoImplTest extends Awarding {
     }
 
     @Test
-    public void save() {
+    public void Insert() {
         System.out.println("增加奖项信息");
 
         System.out.println("增加奖项信息");
 
-        int i=6;
-        int j=7;
+        int i=1;
+        int j=2;
         AwardingDao dao = new AwardingDaoImpl();
         Awarding a1=dao.findByID(i);
         Awarding a2=dao.findByID(j);
@@ -45,12 +43,14 @@ public class AwardingDaoImplTest extends Awarding {
             awarding.setAwardsId(i);
             awarding.setAwardObject("unknown");
             awarding.setAwardsName("金鹰奖");
-            dao.save(awarding);
+            awarding.setMovieId(1);
+            dao.Insert(awarding,clone);
             awarding.setActivities("国际电影节");
             awarding.setAwardsId(j);
             awarding.setAwardObject("unknown");
             awarding.setAwardsName("金象奖");
-            dao.save(awarding);
+            awarding.setMovieId(3);
+            dao.Insert(awarding,clone);
             //验证是否增加奖项信息成功
             Awarding a = dao.findByID(i);
             Awarding b = dao.findByID(j);
@@ -63,14 +63,14 @@ public class AwardingDaoImplTest extends Awarding {
     }
 
     @Test
-    public void delete() {
+    public void Delete() {
         System.out.println("删除一行指定奖项ID信息");
         int i=2;
         AwardingDao dao=new AwardingDaoImpl();
         Awarding awarding= dao.findByID(i);
         if(awarding!=null) {
             try {
-                dao.delete(awarding);
+                dao.Delete(awarding,clone);
             }catch (Exception e) {
                 //System.err.println("Delete Error!");
                 System.out.println(e.getMessage());
@@ -87,9 +87,9 @@ public class AwardingDaoImplTest extends Awarding {
     }
 
     @Test
-    public void update() {
+    public void Update() {
         System.out.println("更新一行信息某列元素");
-        int i=2;
+        int i=1;
         AwardingDao dao=new AwardingDaoImpl();
         Awarding awarding=dao.findByID(i);
         //判断该奖项ID是否存在
@@ -98,7 +98,7 @@ public class AwardingDaoImplTest extends Awarding {
         }
         else {
             awarding.setAwardsName("change");
-            dao.update(awarding);
+            dao.Update(awarding,clone);
             //验证是否更新奖项信息成功
             Awarding a = dao.findByID(i);
             if(!a.getAwardsName().equals("change")) {
@@ -130,7 +130,7 @@ public class AwardingDaoImplTest extends Awarding {
         List<Awarding> awardings = dao.findAll();
         for(int i = 0; i < awardings.size(); i++) {
             Awarding a = awardings.get(i);
-            System.out.println(a.getActivities()+" "+a.getAwardObject()+" "+a.getAwardsName()+" ");
+            System.out.println(a.getActivities()+" "+a.getMovieId()+" "+a.getAwardObject()+" "+a.getAwardsName()+" ");
         }
         System.out.println("列出所有奖项信息成功!");
     }
@@ -139,11 +139,11 @@ public class AwardingDaoImplTest extends Awarding {
     public void findByName() {
         System.out.println("通过查找奖项名称输出所有信息");
         AwardingDao dao = new AwardingDaoImpl();
-        String i="最佳创意奖";
+        String i="金鹰奖";
         List<Awarding> awarding = dao.findByName(i);
         for(int j = 0; j < awarding.size(); j++) {
             Awarding a = awarding.get(j);
-            System.out.println(a.getActivities()+" "+a.getAwardObject()+" "+a.getAwardsName()+" ");
+            System.out.println(a.getActivities()+" "+a.getMovieId()+" "+a.getAwardObject()+" "+a.getAwardsName()+" ");
         }
         System.out.println("查找奖项名称为"+i+" 的所有信息成功!");
     }

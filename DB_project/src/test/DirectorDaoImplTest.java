@@ -12,7 +12,7 @@ import java.util.List;
 import static org.junit.Assert.*;
 
 public class DirectorDaoImplTest extends Director {
-
+    Class clone=Director.class;
     @Before
     public void setUp() throws Exception {
     }
@@ -26,13 +26,13 @@ public class DirectorDaoImplTest extends Director {
     }
 
     @Test
-    public void save() {
+    public void Insert() {
         System.out.println("增加导演信息");
 
         System.out.println("增加导演信息");
 
-        int i=6;
-        int j=7;
+        int i=1;
+        int j=2;
         DirectorDao dao = new DirectorDaoImpl();
         Director a1=dao.findByID(i);
         Director a2=dao.findByID(j);
@@ -43,10 +43,10 @@ public class DirectorDaoImplTest extends Director {
             Director director = new Director();
             director.setDirectorName("jk");
             director.setDirectorId(i);
-            dao.save(director);
+            dao.Insert(director,clone);
             director.setDirectorName("jin");
             director.setDirectorId(j);
-            dao.save(director);
+            dao.Insert(director,clone);
             //验证是否增加导演信息成功
             Director a = dao.findByID(i);
             Director b = dao.findByID(j);
@@ -60,14 +60,14 @@ public class DirectorDaoImplTest extends Director {
     }
 
     @Test
-    public void delete() {
+    public void Delete() {
         System.out.println("删除一行指定导演ID信息");
         int i=2;
         DirectorDao dao=new DirectorDaoImpl();
         Director director= dao.findByID(i);
         if(director!=null) {
             try {
-                dao.delete(director);
+                dao.Delete(director,clone);
             }catch (Exception e) {
                 //System.err.println("Delete Error!");
                 System.out.println(e.getMessage());
@@ -84,9 +84,9 @@ public class DirectorDaoImplTest extends Director {
     }
 
     @Test
-    public void update() {
+    public void Update() {
         System.out.println("更新一行信息某列元素");
-        int i=2;
+        int i=1;
         DirectorDao dao=new DirectorDaoImpl();
         Director director=dao.findByID(i);
         //判断该导演ID是否存在
@@ -95,7 +95,7 @@ public class DirectorDaoImplTest extends Director {
         }
         else {
             director.setDirectorName("change");
-            dao.update(director);
+            dao.Update(director,clone);
             //验证是否更新导演信息成功
             Director a = dao.findByID(i);
             if(!a.getDirectorName().equals("change")) {
@@ -113,7 +113,7 @@ public class DirectorDaoImplTest extends Director {
     public void findByID() {
         System.out.println("通过导演ID输出一行信息");
         DirectorDao dao = new DirectorDaoImpl();
-        int i=2;
+        int i=1;
         Director a = dao.findByID(i);
         //测试是否找到该地址ID
         if(a == null) {
@@ -141,7 +141,7 @@ public class DirectorDaoImplTest extends Director {
     public void findByName() {
         System.out.println("通过查找导演ID输出所有导演信息");
         DirectorDao dao = new DirectorDaoImpl();
-        String i="unknown";
+        String i="jk";
         List<Director> directors = dao.findByName(i);
         for(int j = 0; j < directors.size(); j++) {
             Director a = directors.get(j);
