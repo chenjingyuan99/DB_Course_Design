@@ -35,11 +35,11 @@ public class LocationDaoImplTest extends Location {
             loc.setRelationId(i);
             loc.setRegionId(1);
             loc.setMovieId(1);
-            dao.Insert(loc);
+            dao.Insert(loc, Location.class);
             loc.setRelationId(j);
             loc.setRegionId(1);
             loc.setMovieId(1);
-            dao.Insert(loc);
+            dao.Insert(loc, Location.class);
             //验证是否增加属性值信息成功
             Location a = dao.findByID(i);
             Location b = dao.findByID(j);
@@ -60,7 +60,7 @@ public class LocationDaoImplTest extends Location {
         Location loc= dao.findByID(i);
         if(loc!=null) {
             try {
-                dao.Delete(loc);
+                dao.Delete(loc, Location.class);
             }catch (Exception e) {
                 //System.err.println("Delete Error!");
                 System.out.println(e.getMessage());
@@ -88,7 +88,7 @@ public class LocationDaoImplTest extends Location {
         }
         else {
             loc.setRegionId(0);
-            dao.Update(loc);
+            dao.Update(loc, Location.class);
             //验证是否更新属性值信息成功
             Location a = dao.findByID(i);
             if(a.getRegionId()!=0) {

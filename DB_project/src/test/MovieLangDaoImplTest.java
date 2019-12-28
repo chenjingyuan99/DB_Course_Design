@@ -35,11 +35,11 @@ public class MovieLangDaoImplTest extends MovieLanguage {
             movi.setRelationId(i);
             movi.setMovieId(1);
             movi.setLanguageId(1);
-            dao.Insert(movi);
+            dao.Insert(movi, MovieLanguage.class);
             movi.setRelationId(j);
             movi.setMovieId(2);
             movi.setLanguageId(2);
-            dao.Insert(movi);
+            dao.Insert(movi, MovieLanguage.class);
             //验证是否增加属性值信息成功
             MovieLanguage a = dao.findByID(i);
             MovieLanguage b = dao.findByID(j);
@@ -60,7 +60,7 @@ public class MovieLangDaoImplTest extends MovieLanguage {
         MovieLanguage movi= dao.findByID(i);
         if(movi!=null) {
             try {
-                dao.Delete(movi);
+                dao.Delete(movi, MovieLanguage.class);
             }catch (Exception e) {
                 //System.err.println("Delete Error!");
                 System.out.println(e.getMessage());
@@ -88,7 +88,7 @@ public class MovieLangDaoImplTest extends MovieLanguage {
         }
         else {
             movi.setMovieId(9);
-            dao.Update(movi);
+            dao.Update(movi, MovieLanguage.class);
             //验证是否更新属性值信息成功
             MovieLanguage a = dao.findByID(i);
             if(a.getMovieId()==9) {

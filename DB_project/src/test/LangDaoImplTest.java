@@ -1,8 +1,8 @@
 package test;
 
-import entity.Language;
 import dao.LangDao;
 import dao.LangDaoImpl;
+import entity.Language;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -34,10 +34,10 @@ public class LangDaoImplTest extends Language {
             Language lan = new Language();
             lan.setLanguageId(i);
             lan.setLanguageName("西班牙语");
-            dao.Insert(lan);
+            dao.Insert(lan, Language.class);
             lan.setLanguageId(j);
             lan.setLanguageName("德语");
-            dao.Insert(lan);
+            dao.Insert(lan, Language.class);
             //验证是否增加属性值信息成功
             Language a = dao.findByID(i);
             Language b = dao.findByID(j);
@@ -58,7 +58,7 @@ public class LangDaoImplTest extends Language {
         Language lan= dao.findByID(i);
         if(lan!=null) {
             try {
-                dao.Delete(lan);
+                dao.Delete(lan, Language.class);
             }catch (Exception e) {
                 //System.err.println("Delete Error!");
                 System.out.println(e.getMessage());
@@ -86,7 +86,7 @@ public class LangDaoImplTest extends Language {
         }
         else {
             lan.setLanguageName("日语");
-            dao.Update(lan);
+            dao.Update(lan, Language.class);
             //验证是否更新属性值信息成功
             Language a = dao.findByID(i);
             if(!a.getLanguageName().equals("日语")) {
@@ -125,7 +125,7 @@ public class LangDaoImplTest extends Language {
     public void findByLangName() {
         System.out.println("通过语言名输出一行信息");
         LangDao dao = new LangDaoImpl();
-        String str="英语";
+        String str="西班牙语";
         Language a = dao.findByLangName(str);
         if(a == null) {
             System.out.println("没有语言名为 "+str+" 的信息");

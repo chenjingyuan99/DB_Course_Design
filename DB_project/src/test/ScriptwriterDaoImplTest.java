@@ -1,8 +1,8 @@
 package test;
 
-import entity.Scriptwriter;
 import dao.ScriptwriterDao;
 import dao.ScriptwriterDaoImpl;
+import entity.Scriptwriter;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -34,10 +34,10 @@ public class ScriptwriterDaoImplTest extends Scriptwriter {
             Scriptwriter sciptwri = new Scriptwriter();
             sciptwri.setScriptwriterId(i);
             sciptwri.setScriptwriterName("维德胡·维诺德·乔普拉");
-            dao.Insert(sciptwri);
+            dao.Insert(sciptwri, Scriptwriter.class);
             sciptwri.setScriptwriterId(j);
             sciptwri.setScriptwriterName("拉吉库马尔·希拉尼");
-            dao.Insert(sciptwri);
+            dao.Insert(sciptwri, Scriptwriter.class);
             //验证是否增加属性值信息成功
             Scriptwriter a = dao.findByID(i);
             Scriptwriter b = dao.findByID(j);
@@ -58,7 +58,7 @@ public class ScriptwriterDaoImplTest extends Scriptwriter {
         Scriptwriter sciptwri= dao.findByID(i);
         if(sciptwri!=null) {
             try {
-                dao.Delete(sciptwri);
+                dao.Delete(sciptwri, Scriptwriter.class);
             }catch (Exception e) {
                 //System.err.println("Delete Error!");
                 System.out.println(e.getMessage());
@@ -86,7 +86,7 @@ public class ScriptwriterDaoImplTest extends Scriptwriter {
         }
         else {
             sciptwri.setScriptwriterName("阿希贾特·乔希");
-            dao.Update(sciptwri);
+            dao.Update(sciptwri, Scriptwriter.class);
             //验证是否更新属性值信息成功
             Scriptwriter a = dao.findByID(i);
             if(!a.getScriptwriterName().equals("阿希贾特·乔希")) {

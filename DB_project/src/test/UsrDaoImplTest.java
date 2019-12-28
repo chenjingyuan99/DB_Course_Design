@@ -1,8 +1,8 @@
 package test;
 
-import entity.Usr;
 import dao.UsrDao;
 import dao.UsrDaoImpl;
+import entity.Usr;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -36,12 +36,12 @@ public class UsrDaoImplTest extends Usr {
             user.setUsrAccount("1310135143");
             user.setUsrNickname("涤尘");
             user.setUsrPasswd("123456");
-            dao.Insert(user);
+            dao.Insert(user, Usr.class);
             user.setUsrId(j);
             user.setUsrAccount("2200722984");
             user.setUsrNickname("八方轮");
             user.setUsrPasswd("654321");
-            dao.Insert(user);
+            dao.Insert(user, Usr.class);
             //验证是否增加属性值信息成功
             Usr a = dao.findByID(i);
             Usr b = dao.findByID(j);
@@ -62,7 +62,7 @@ public class UsrDaoImplTest extends Usr {
         Usr user= dao.findByID(i);
         if(user!=null) {
             try {
-                dao.Delete(user);
+                dao.Delete(user, Usr.class);
             }catch (Exception e) {
                 //System.err.println("Delete Error!");
                 System.out.println(e.getMessage());
@@ -90,7 +90,7 @@ public class UsrDaoImplTest extends Usr {
         }
         else {
             user.setUsrNickname("怕热。");
-            dao.Update(user);
+            dao.Update(user, Usr.class);
             //验证是否更新属性值信息成功
             Usr a = dao.findByID(i);
             if(!a.getUsrNickname().equals("CHANGE")) {

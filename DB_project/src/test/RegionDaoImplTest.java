@@ -1,8 +1,8 @@
 package test;
 
-import entity.Region;
 import dao.RegionDao;
 import dao.RegionDaoImpl;
+import entity.Region;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -34,10 +34,10 @@ public class RegionDaoImplTest extends Region {
             Region reg = new Region();
             reg.setRegionId(i);
             reg.setRegionName("中国大陆");
-            dao.Insert(reg);
+            dao.Insert(reg, Region.class);
             reg.setRegionId(j);
             reg.setRegionName("美国");
-            dao.Insert(reg);
+            dao.Insert(reg, Region.class);
             //验证是否增加属性值信息成功
             Region a = dao.findByID(i);
             Region b = dao.findByID(j);
@@ -58,7 +58,7 @@ public class RegionDaoImplTest extends Region {
         Region reg= dao.findByID(i);
         if(reg!=null) {
             try {
-                dao.Delete(reg);
+                dao.Delete(reg, Region.class);
             }catch (Exception e) {
                 //System.err.println("Delete Error!");
                 System.out.println(e.getMessage());
@@ -86,7 +86,7 @@ public class RegionDaoImplTest extends Region {
         }
         else {
             reg.setRegionName("印度");
-            dao.Update(reg);
+            dao.Update(reg, Region.class);
             //验证是否更新属性值信息成功
             Region a = dao.findByID(i);
             if(!a.getRegionName().equals("印度")) {

@@ -35,11 +35,11 @@ public class ScriptDaoImplTest extends Script {
             scp.setRelationId(i);
             scp.setMovieId(1);
             scp.setScriptwriterId(1);
-            dao.Insert(scp);
+            dao.Insert(scp, Script.class);
             scp.setRelationId(j);
             scp.setMovieId(2);
             scp.setScriptwriterId(2);
-            dao.Insert(scp);
+            dao.Insert(scp, Script.class);
             //验证是否增加属性值信息成功
             Script a = dao.findByID(i);
             Script b = dao.findByID(j);
@@ -60,7 +60,7 @@ public class ScriptDaoImplTest extends Script {
         Script scp= dao.findByID(i);
         if(scp!=null) {
             try {
-                dao.Delete(scp);
+                dao.Delete(scp, Script.class);
             }catch (Exception e) {
                 System.out.println(e.getMessage());
             }
@@ -87,7 +87,7 @@ public class ScriptDaoImplTest extends Script {
         }
         else {
             scp.setScriptwriterId(9);
-            dao.Update(scp);
+            dao.Update(scp, Script.class);
             //验证是否更新属性值信息成功
             Script a = dao.findByID(i);
             if(a.getScriptwriterId()==9) {

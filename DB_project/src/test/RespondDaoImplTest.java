@@ -1,12 +1,13 @@
 package test;
 
-import entity.Responding;
 import dao.RespondDao;
 import dao.RespondDaoImpl;
+import entity.Responding;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.util.Calendar;
 import java.util.List;
 
 public class RespondDaoImplTest extends Responding {
@@ -35,17 +36,20 @@ public class RespondDaoImplTest extends Responding {
             res.setRespondId(i);
             res.setDiscussId(1);
             res.setPromulgator("LuckyMe");
-            long timestamp = System.currentTimeMillis();
-            res.setReleaseTime(timestamp);
+            Calendar c = Calendar.getInstance();//可以对每个时间域单独修改
+            int year = c.get(Calendar.YEAR);
+            int month = c.get(Calendar.MONTH);
+            int date = c.get(Calendar.DATE);
+            String str = year + "-" + month + "-" + date;
+            res.setReleaseTime(str);
             res.setRespondContent("Agree!");
-            dao.Insert(res);
+            dao.Insert(res, Responding.class);
             res.setRespondId(j);
             res.setDiscussId(1);
             res.setPromulgator("LuckyYou");
-            long timstamp = System.currentTimeMillis();
-            res.setReleaseTime(timstamp);
+            res.setReleaseTime(str);
             res.setRespondContent("Yeah!");
-            dao.Insert(res);
+            dao.Insert(res, Responding.class);
             //验证是否增加属性值信息成功
             Responding a = dao.findByID(i);
             Responding b = dao.findByID(j);
@@ -66,7 +70,7 @@ public class RespondDaoImplTest extends Responding {
         Responding res= dao.findByID(i);
         if(res!=null) {
             try {
-                dao.Delete(res);
+                dao.Delete(res, Responding.class);
             }catch (Exception e) {
                 //System.err.println("Delete Error!");
                 System.out.println(e.getMessage());
@@ -94,7 +98,7 @@ public class RespondDaoImplTest extends Responding {
         }
         else {
             res.setRespondContent("Disagree!");
-            dao.Update(res);
+            dao.Update(res, Responding.class);
             //验证是否更新属性值信息成功
             Responding a = dao.findByID(i);
             if(!a.getRespondContent().equals("Disagree!")) {

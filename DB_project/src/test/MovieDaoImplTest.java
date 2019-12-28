@@ -1,14 +1,13 @@
 package test;
 
-import entity.Movie;
 import dao.MovieDao;
 import dao.MovieDaoImpl;
+import entity.Movie;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
-
 import java.util.List;
-import java.sql.Date;
+
 
 public class MovieDaoImplTest extends Movie {
 
@@ -35,18 +34,18 @@ public class MovieDaoImplTest extends Movie {
             Movie movi = new Movie();
             movi.setMovieId(i);
             movi.setMovieName("3 idoits");
-            Date mvdate = new Date(2011,12,8);
-            movi.setReleaseDate(mvdate);
+            movi.setReleaseDate("2011-12-08");
             movi.setMovieTime(171);
             movi.setMovieIntroduction("本片根据印度畅销书作家奇坦·巴哈特（Chetan Bhagat）的处女作小说《五点人》（Five Point Someone）改编而成。");
-            dao.Insert(movi);
+            movi.setMovieOnline((byte) 1);
+            dao.Insert(movi, Movie.class);
             movi.setMovieId(j);
             movi.setMovieName("红海行动");
-            Date date = new Date(2018,2,16);
-            movi.setReleaseDate(date);
+            movi.setReleaseDate("2018-02-16");
             movi.setMovieTime(138);
+            movi.setMovieOnline((byte) 0);
             movi.setMovieIntroduction("中东国家伊维亚共和国发生政变，武装冲突不断升级。");
-            dao.Insert(movi);
+            dao.Insert(movi, Movie.class);
             //验证是否增加属性值信息成功
             Movie a = dao.findByID(i);
             Movie b = dao.findByID(j);
@@ -67,7 +66,7 @@ public class MovieDaoImplTest extends Movie {
         Movie movi= dao.findByID(i);
         if(movi!=null) {
             try {
-                dao.Delete(movi);
+                dao.Delete(movi, Movie.class);
             }catch (Exception e) {
                 //System.err.println("Delete Error!");
                 System.out.println(e.getMessage());
@@ -95,7 +94,7 @@ public class MovieDaoImplTest extends Movie {
         }
         else {
             movi.setMovieTime(172);
-            dao.Update(movi);
+            dao.Update(movi, Movie.class);
             //验证是否更新属性值信息成功
             Movie a = dao.findByID(i);
             if(a.getMovieTime()!=172) {

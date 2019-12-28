@@ -34,10 +34,10 @@ public class TypeDaoImplTest extends Type {
             Type typ = new Type();
             typ.setTypeId(i);
             typ.setTypeName("喜剧");
-            dao.Insert(typ);
+            dao.Insert(typ, Type.class);
             typ.setTypeId(j);
             typ.setTypeName("爱情");
-            dao.Insert(typ);
+            dao.Insert(typ, Type.class);
             //验证是否增加属性值信息成功
             Type a = dao.findByID(i);
             Type b = dao.findByID(j);
@@ -58,7 +58,7 @@ public class TypeDaoImplTest extends Type {
         Type typ= dao.findByID(i);
         if(typ!=null) {
             try {
-                dao.Delete(typ);
+                dao.Delete(typ, Type.class);
             }catch (Exception e) {
                 //System.err.println("Delete Error!");
                 System.out.println(e.getMessage());
@@ -86,7 +86,7 @@ public class TypeDaoImplTest extends Type {
         }
         else {
             typ.setTypeName("歌舞");
-            dao.Update(typ);
+            dao.Update(typ, Type.class);
             //验证是否更新属性值信息成功
             Type a = dao.findByID(i);
             if(!a.getTypeName().equals("歌舞")) {
