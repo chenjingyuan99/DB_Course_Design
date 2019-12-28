@@ -1,7 +1,6 @@
 package dao;
 
 import entity.Region;
-import org.hibernate.Query;
 import org.hibernate.Session;
 
 import java.util.List;
@@ -9,11 +8,9 @@ import java.util.List;
 public class RegionDaoImpl extends BaseDaoImpl implements RegionDao {
     @Override
     public Region findByID(int regId) {
-        Session session = getSession();
-        Query query = session.createQuery("from Region rg where rg.regionId=?");
-        query.setInteger(0, regId);
-        List<Region> list = query.list();
-
+        Session session = getSession(entity.Region.class);
+        String hql = "from entity.Region rg where rg.regionId=" + regId;
+        List<Region> list = session.createQuery(hql).list();
         session.beginTransaction().commit();
         session.close();
 
@@ -22,9 +19,8 @@ public class RegionDaoImpl extends BaseDaoImpl implements RegionDao {
 
     @Override
     public List<Region> findAll() {
-        Session session = getSession();
-        Query query = session.createQuery("from Region");
-        List list = (List<Region>)query.list();
+        Session session = getSession(entity.Region.class);
+        List<Region> list = session.createQuery("from entity.Region").list();
         session.beginTransaction().commit();
         session.close();
         return list;
@@ -32,11 +28,9 @@ public class RegionDaoImpl extends BaseDaoImpl implements RegionDao {
 
     @Override
     public Region findByRegName(String regNa) {
-        Session session = getSession();
-        Query query = session.createQuery("from Region rg where rg.regionName=?");
-        query.setString(0, regNa);
-        List<Region> list = query.list();
-
+        Session session = getSession(entity.Region.class);
+        String hql = "from entity.Region rg where rg.regionName='" + regNa + "'";
+        List<Region> list = session.createQuery(hql).list();
         session.beginTransaction().commit();
         session.close();
 

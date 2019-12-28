@@ -1,7 +1,6 @@
 package dao;
 
 import entity.Responding;
-import org.hibernate.Query;
 import org.hibernate.Session;
 
 import java.util.List;
@@ -9,11 +8,9 @@ import java.util.List;
 public class RespondDaoImpl extends BaseDaoImpl implements RespondDao {
     @Override
     public Responding findByID(int resId) {
-        Session session = getSession();
-        Query query = session.createQuery("from Responding rs where rs.respondId=?");
-        query.setInteger(0, resId);
-        List<Responding> list = query.list();
-
+        Session session = getSession(Responding.class);
+        String hql = "from entity.Responding rs where rs.respondId=" + resId;
+        List<Responding> list = session.createQuery(hql).list();
         session.beginTransaction().commit();
         session.close();
 
@@ -22,9 +19,8 @@ public class RespondDaoImpl extends BaseDaoImpl implements RespondDao {
 
     @Override
     public List<Responding> findAll() {
-        Session session = getSession();
-        Query query = session.createQuery("from Responding");
-        List list = (List<Responding>)query.list();
+        Session session = getSession(Responding.class);
+        List<Responding> list = session.createQuery("from entity.Responding").list();
         session.beginTransaction().commit();
         session.close();
         return list;
@@ -32,11 +28,9 @@ public class RespondDaoImpl extends BaseDaoImpl implements RespondDao {
 
     @Override
     public List<Responding> findByDisID(int disId) {
-        Session session = getSession();
-        Query query = session.createQuery("from Responding rp where rp.discussId=?");
-        query.setInteger(0, disId);
-        List<Responding> list = query.list();
-
+        Session session = getSession(Responding.class);
+        String hql = "from entity.Responding rp where rp.discussId=" + disId;
+        List<Responding> list = session.createQuery(hql).list();
         session.beginTransaction().commit();
         session.close();
 

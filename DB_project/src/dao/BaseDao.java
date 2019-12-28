@@ -2,10 +2,22 @@ package dao;
 
 public interface BaseDao {
 
-	public void Insert(Object obj, Class clana);
+    /**
+     * TODO insert an object to db
+     * @param obj
+     */
+    public void Insert(Object obj,Class clone);
 
-	public void Delete(Object obj, Class clana);
+    /**
+     * TODO delete an object from db
+     * @param obj
+     */
+    public void Delete(Object obj,Class clone);
 
-	public void Update(Object obj, Class clana);
-	
+    /**
+     * todo update an object from db
+     * @param obj
+     */
+    public void Update(Object obj,Class clone);
+
 }

@@ -1,7 +1,6 @@
 package dao;
 
 import entity.Scriptwriter;
-import org.hibernate.Query;
 import org.hibernate.Session;
 
 import java.util.List;
@@ -9,10 +8,10 @@ import java.util.List;
 public class ScriptwriterDaoImpl extends BaseDaoImpl implements ScriptwriterDao {
     @Override
     public Scriptwriter findByID(int swId) {
-        Session session = getSession();
-        Query query = session.createQuery("from Scriptwriter sw where sw.scriptwriterId=?");
-        query.setInteger(0, swId);
-        List<Scriptwriter> list = query.list();
+
+        Session session = getSession(Scriptwriter.class);
+        String hql = "from entity.Scriptwriter sw where sw.scriptwriterId=" + swId;
+        List<Scriptwriter> list = session.createQuery(hql).list();
 
         session.beginTransaction().commit();
         session.close();
@@ -22,9 +21,8 @@ public class ScriptwriterDaoImpl extends BaseDaoImpl implements ScriptwriterDao 
 
     @Override
     public List<Scriptwriter> findAll() {
-        Session session = getSession();
-        Query query = session.createQuery("from Scriptwriter");
-        List list = (List<Scriptwriter>)query.list();
+        Session session = getSession(Scriptwriter.class);
+        List<Scriptwriter> list = session.createQuery("from entity.Scriptwriter").list();
         session.beginTransaction().commit();
         session.close();
         return list;
@@ -32,11 +30,9 @@ public class ScriptwriterDaoImpl extends BaseDaoImpl implements ScriptwriterDao 
 
     @Override
     public Scriptwriter findByName(String swNa) {
-        Session session = getSession();
-        Query query = session.createQuery("from Scriptwriter sw where sw.scriptwriterName=?");
-        query.setString(0, swNa);
-        List<Scriptwriter> list = query.list();
-
+        Session session = getSession(Scriptwriter.class);
+        String hql = "from entity.Scriptwriter sw where sw.scriptwriterName='" + swNa + "'";
+        List<Scriptwriter> list = session.createQuery(hql).list();
         session.beginTransaction().commit();
         session.close();
 

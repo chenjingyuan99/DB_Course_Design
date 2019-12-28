@@ -1,17 +1,16 @@
 package dao;
 
 import entity.Type;
-import org.hibernate.Query;
 import org.hibernate.Session;
 import java.util.List;
 
 public class TypeDaoImpl extends BaseDaoImpl implements TypeDao {
     @Override
     public Type findByID(int typId) {
-        Session session = getSession();
-        Query query = session.createQuery("from Type tp where tp.typeId=?");
-        query.setInteger(0, typId);
-        List<Type> list = query.list();
+
+        Session session = getSession(Type.class);
+        String hql = "from entity.Type tp where tp.typeId=" + typId;
+        List<Type> list = session.createQuery(hql).list();
 
         session.beginTransaction().commit();
         session.close();
@@ -21,9 +20,8 @@ public class TypeDaoImpl extends BaseDaoImpl implements TypeDao {
 
     @Override
     public List<Type> findAll() {
-        Session session = getSession();
-        Query query = session.createQuery("from Type");
-        List list = (List<Type>)query.list();
+        Session session = getSession(Type.class);
+        List<Type> list = session.createQuery("from entity.Type").list();
         session.beginTransaction().commit();
         session.close();
         return list;
@@ -31,10 +29,10 @@ public class TypeDaoImpl extends BaseDaoImpl implements TypeDao {
 
     @Override
     public Type findByTypeName(String typNa) {
-        Session session = getSession();
-        Query query = session.createQuery("from Type tp where tp.typeName=?");
-        query.setString(0, typNa);
-        List<Type> list = query.list();
+
+        Session session = getSession(Type.class);
+        String hql = "from entity.Type tp where tp.typeName='" + typNa + "'";
+        List<Type> list = session.createQuery(hql).list();
 
         session.beginTransaction().commit();
         session.close();

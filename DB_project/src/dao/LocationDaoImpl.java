@@ -1,6 +1,5 @@
 package dao;
 
-import java.security.acl.LastOwnerException;
 import java.util.List;
 
 import entity.Location;
@@ -11,22 +10,21 @@ public class LocationDaoImpl extends BaseDaoImpl implements LocationDao {
 
     @Override
     public Location findByID(int Id) {
-        Session session = getSession();
-        Query query = session.createQuery("from Location loc where loc.relationId=?");
-        query.setInteger(0, Id);
-        List<Location> list = query.list();
-
+        Class clana = entity.Location.class;
+        Session session = getSession(clana);
+        String hql = "from entity.Location loc where loc.relationId=" + Id;
+        List<Location> list = session.createQuery(hql).list();
         session.beginTransaction().commit();
         session.close();
-
         return list.size()>0?list.get(0):null;
     }
 
     @Override
     public List<Location> findAll() {
-        Session session = getSession();
-        Query query = session.createQuery("from Location");
-        List list = (List<Location>)query.list();
+        Class clana = entity.Location.class;
+        Session session = getSession(clana);
+        Query query = session.createQuery("from entity.Location");
+        List list = (List<Location>)session.createQuery("from entity.Label").list();
         session.beginTransaction().commit();
         session.close();
         return list;
@@ -34,11 +32,10 @@ public class LocationDaoImpl extends BaseDaoImpl implements LocationDao {
 
     @Override
     public List<Location> findByRegID(int regId) {
-        Session session = getSession();
-        Query query = session.createQuery("from Location la where la.regionId=?");
-        query.setInteger(0, regId);
-        List<Location> list = query.list();
-
+        Class clana = entity.Location.class;
+        Session session = getSession(clana);
+        String hql = "from entity.Location loc where loc.regionId=" + regId;
+        List<Location> list = session.createQuery(hql).list();
         session.beginTransaction().commit();
         session.close();
 
@@ -47,11 +44,10 @@ public class LocationDaoImpl extends BaseDaoImpl implements LocationDao {
 
     @Override
     public List<Location> findByMovieID(int movId) {
-        Session session = getSession();
-        Query query = session.createQuery("from Location la where la.movieId=?");
-        query.setInteger(0, movId);
-        List<Location> list = query.list();
-
+        Class clana = entity.Location.class;
+        Session session = getSession(clana);
+        String hql = "from entity.Location loc where loc.movieId=" + movId;
+        List<Location> list = session.createQuery(hql).list();
         session.beginTransaction().commit();
         session.close();
 

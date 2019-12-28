@@ -1,7 +1,6 @@
 package dao;
 
 import entity.MovieLanguage;
-import org.hibernate.Query;
 import org.hibernate.Session;
 
 import java.util.List;
@@ -9,11 +8,9 @@ import java.util.List;
 public class MovieLangDaoImpl extends BaseDaoImpl implements MovieLangDao {
     @Override
     public MovieLanguage findByID(int Id) {
-        Session session = getSession();
-        Query query = session.createQuery("from MovieLanguage mov where mov.relationId=?");
-        query.setInteger(0, Id);
-        List<MovieLanguage> list = query.list();
-
+        Session session = getSession(entity.MovieLanguage.class);
+        String hql = "from entity.MovieLanguage mv where mv.movieId=" + Id;
+        List<MovieLanguage> list = session.createQuery(hql).list();
         session.beginTransaction().commit();
         session.close();
 
@@ -22,9 +19,8 @@ public class MovieLangDaoImpl extends BaseDaoImpl implements MovieLangDao {
 
     @Override
     public List<MovieLanguage> findAll() {
-        Session session = getSession();
-        Query query = session.createQuery("from MovieLanguage");
-        List list = (List<MovieLanguage>)query.list();
+        Session session = getSession(entity.MovieLanguage.class);
+        List<MovieLanguage> list = session.createQuery("from entity.MovieLanguage").list();
         session.beginTransaction().commit();
         session.close();
         return list;
@@ -32,11 +28,9 @@ public class MovieLangDaoImpl extends BaseDaoImpl implements MovieLangDao {
 
     @Override
     public List<MovieLanguage> findByLangID(int langId) {
-        Session session = getSession();
-        Query query = session.createQuery("from MovieLanguage ml where ml.languageId=?");
-        query.setInteger(0, langId);
-        List<MovieLanguage> list = query.list();
-
+        Session session = getSession(entity.MovieLanguage.class);
+        String hql = "from entity.MovieLanguage mv where mv.languageId=" + langId;
+        List<MovieLanguage> list = session.createQuery(hql).list();
         session.beginTransaction().commit();
         session.close();
 
@@ -45,11 +39,9 @@ public class MovieLangDaoImpl extends BaseDaoImpl implements MovieLangDao {
 
     @Override
     public List<MovieLanguage> findByMovieID(int movId) {
-        Session session = getSession();
-        Query query = session.createQuery("from MovieLanguage ml where ml.movieId=?");
-        query.setInteger(0, movId);
-        List<MovieLanguage> list = query.list();
-
+        Session session = getSession(entity.MovieLanguage.class);
+        String hql = "from entity.MovieLanguage mv where mv.movieId=" + movId;
+        List<MovieLanguage> list = session.createQuery(hql).list();
         session.beginTransaction().commit();
         session.close();
 

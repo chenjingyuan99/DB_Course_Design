@@ -1,8 +1,8 @@
 package dao;
 
-import java.util.List;
-
 import entity.Awarding;
+
+import java.util.List;
 
 public interface AwardingDao extends BaseDao {
 

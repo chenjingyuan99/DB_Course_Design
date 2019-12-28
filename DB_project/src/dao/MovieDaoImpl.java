@@ -1,7 +1,6 @@
 package dao;
 
 import entity.Movie;
-import org.hibernate.Query;
 import org.hibernate.Session;
 
 import java.util.List;
@@ -10,11 +9,10 @@ public class MovieDaoImpl extends BaseDaoImpl implements MovieDao {
 
     @Override
     public Movie findByID(int movId) {
-        Session session = getSession();
-        Query query = session.createQuery("from Movie mv where mv.movieId=?");
-        query.setInteger(0, movId);
-        List<Movie> list = query.list();
-
+        Class clana = entity.Movie.class;
+        Session session = getSession(clana);
+        String hql = "from entity.Movie mv where mv.movieId=" + movId;
+        List<Movie> list = session.createQuery(hql).list();
         session.beginTransaction().commit();
         session.close();
 
@@ -23,9 +21,9 @@ public class MovieDaoImpl extends BaseDaoImpl implements MovieDao {
 
     @Override
     public List<Movie> findAll() {
-        Session session = getSession();
-        Query query = session.createQuery("from Movie");
-        List list = (List<Movie>)query.list();
+        Class clana = entity.Movie.class;
+        Session session = getSession(clana);
+        List<Movie> list = session.createQuery("from entity.Movie").list();
         session.beginTransaction().commit();
         session.close();
         return list;
@@ -33,11 +31,10 @@ public class MovieDaoImpl extends BaseDaoImpl implements MovieDao {
 
     @Override
     public Movie findByName(String movNa) {
-        Session session = getSession();
-        Query query = session.createQuery("from Movie mv where mv.movieName=?");
-        query.setString(0, movNa);
-        List<Movie> list = query.list();
-
+        Class clana = entity.Movie.class;
+        Session session = getSession(clana);
+        String hql = "from entity.Movie mv where mv.movieName='" + movNa + "'";
+        List<Movie> list = session.createQuery(hql).list();
         session.beginTransaction().commit();
         session.close();
 
