@@ -21,7 +21,7 @@ public class TypeDaoImplTest extends Type {
 
     @Test
     public void insert() {
-        System.out.println("增加label值信息");
+        System.out.println("增加Type值信息");
         int i=1;
         int j=2;
         TypeDao dao = new TypeDaoImpl();
